@@ -16,10 +16,7 @@ export const FeedbackOptions = ({
       </StyledButton>
       <StyledButton type="button" onClick={onClickIncrementBad}>
         Bad
-      </StyledButton>    
-      <StyledButton type="button" onClick={onClickIncrementBad}>
-        Bad
-      </StyledButton>    
+      </StyledButton>      
     </div>
   );
 };
