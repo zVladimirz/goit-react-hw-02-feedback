@@ -1,26 +1,27 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper } from './App.styled';
-import { SectionWrapper } from 'components/SectionWrapper/SectionWrapper';
-import { Statistics } from 'components/Statistics/Statistics';
-import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
+import SectionWrapper from 'components/SectionWrapper';
+import Statistics from 'components/Statistics';
+import FeedbackOptions from 'components/FeedbackOptions';
 
-export class App extends Component {
+class App extends Component {
   static propTypes = {
     good: PropTypes.number,
     neutral: PropTypes.number,
     bad: PropTypes.number,
   };
 
-  // static defaultProps = {
-  //   step: 1,
-  //   initialValue: 0,
-  // };
-
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+
+  incrementFeedback = e => {
+    this.setState(prevState => ({
+      [e.target.innerText]: prevState[e.target.innerText] + 1,
+    }));
   };
   countTotalFeedback() {
     return this.state.good + this.state.neutral + this.state.bad;
@@ -29,24 +30,6 @@ export class App extends Component {
     return Math.round(this.state.good / (this.countTotalFeedback() / 100));
   }
 
-  onClickIncrementGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  onClickIncrementNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  onClickIncrementBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
-
   render() {
     const { good, neutral, bad } = this.state;
 
@@ -54,22 +37,27 @@ export class App extends Component {
       <Wrapper>
         <SectionWrapper title="Please leave feedback">
           <FeedbackOptions
-            onClickIncrementGood={this.onClickIncrementGood}
-            onClickIncrementNeutral={this.onClickIncrementNeutral}
-            onClickIncrementBad={this.onClickIncrementBad}
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={this.incrementFeedback}
           />
         </SectionWrapper>
 
         <SectionWrapper title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {this.state.bad || this.state.good || this.state.neutral ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <p>There is no feedback</p>
+          )}
         </SectionWrapper>
       </Wrapper>
     );
   }
 }
+
+export default App;

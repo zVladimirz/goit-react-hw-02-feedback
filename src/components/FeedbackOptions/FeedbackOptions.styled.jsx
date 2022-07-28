@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const wobble = keyframes`
   16.65% {
@@ -21,7 +21,6 @@ const wobble = keyframes`
   }
 `;
 
-
 export const StyledButton = styled.button`
   min-width: 70px;
   border: none;
@@ -29,15 +28,12 @@ export const StyledButton = styled.button`
   padding: 7px 10px;
 
   border-radius: 5px;
-  margin : 10px;
+  margin: 10px;
 
   &:hover {
     animation-name: ${wobble};
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
-
-
   }
-
 `;

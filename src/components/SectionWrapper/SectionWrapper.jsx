@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { TitleSectionWrapper } from './SectionWrapper.styled';
 
-export const SectionWrapper = ({ title, children }) => {
+const SectionWrapper = ({ title, children }) => {
   return (
     <section title={title}>
       <TitleSectionWrapper>{title}</TitleSectionWrapper>
@@ -12,3 +12,5 @@ export const SectionWrapper = ({ title, children }) => {
 SectionWrapper.propTypes = {
   title: PropTypes.string,
 };
+
+export default SectionWrapper;
