@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: #f3f6f9;
-  width: 400px;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 15px;
+  background: #ffffff;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.88);
+  border-radius: 16px;
+  margin: 20px auto;
+  width: 350px;
 `;
