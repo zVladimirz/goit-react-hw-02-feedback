@@ -11,6 +11,7 @@ const SectionWrapper = ({ title, children }) => {
 };
 SectionWrapper.propTypes = {
   title: PropTypes.string,
+  children:PropTypes.node,
 };
 
 export default SectionWrapper;

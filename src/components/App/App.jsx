@@ -1,17 +1,11 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Wrapper } from './App.styled';
 import SectionWrapper from 'components/SectionWrapper';
 import Statistics from 'components/Statistics';
 import FeedbackOptions from 'components/FeedbackOptions';
+import Notification from 'components/Notification';
 
 class App extends Component {
-  static propTypes = {
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
-  };
-
   state = {
     good: 0,
     neutral: 0,
@@ -32,12 +26,11 @@ class App extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-
     return (
       <Wrapper>
         <SectionWrapper title="Please leave feedback">
           <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.incrementFeedback}
           />
         </SectionWrapper>
@@ -52,7 +45,7 @@ class App extends Component {
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <p>There is no feedback</p>
+            <Notification message="There is no feedback"/>
           )}
         </SectionWrapper>
       </Wrapper>
