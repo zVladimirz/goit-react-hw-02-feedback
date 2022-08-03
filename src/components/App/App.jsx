@@ -36,7 +36,7 @@ class App extends Component {
         </SectionWrapper>
 
         <SectionWrapper title="Statistics">
-          {this.state.bad || this.state.good || this.state.neutral ? (
+          {bad || good || neutral ? (
             <Statistics
               good={good}
               neutral={neutral}
